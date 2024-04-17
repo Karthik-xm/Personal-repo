@@ -13,6 +13,20 @@ const person = {
         { 
             name: "fiat",
             models: [500, "panda"]
+        },
+        { 
+            name: "skoda",
+            models: ["octavia", "octavia"]
+        }
+    ],
+    Bike: [
+        {
+            name: "ktm",
+            models: [200, 390, 250]
+        },
+        {
+            name: "meteor",
+            models: ["350", "650"]
         }
     ]
 };
