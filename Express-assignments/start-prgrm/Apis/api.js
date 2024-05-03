@@ -10,3 +10,4 @@ app.get('/json',(req,res)=>{
                    {name: 'mailto:kp',email:"kp@gmail.com"}];
     res.json(jsondata);
 })
+
