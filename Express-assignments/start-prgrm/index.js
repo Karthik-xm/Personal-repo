@@ -6,16 +6,17 @@ const employeeData = require('./Modules/EmpData')
 const value =(employeeData) => {
     data = 'Employee Data:<br>';
     employeeData.forEach(employee => {
-    data += `<br>ID: ${employee.id}<br>`;
-    data +=`Name: ${employee.firstName} ${employee.lastName}<br>`;
-    data += `Age: ${employee.age}`;
+    data += '<br>ID:'+ `${employee.id}`+'<br>';
+    data +='Name: '+`${employee.firstName} ${employee.lastName}`+'<br>';
+    data += 'Age:'+ `${employee.age}`;
 });
 return data;
 }
 
 const app = express();
+const bodyParser=require('body-parser');
+app.use(bodyParser.json());
 const empData = value(employeeData);
-console.log(empData);
 
 app.get('/', (req, res) => {
     res.send(empData);
