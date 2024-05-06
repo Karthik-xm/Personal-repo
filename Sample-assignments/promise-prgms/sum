@@ -1,0 +1,22 @@
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const number1 = 10;
+    resolve(number1);
+  }, 2000);
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const number2 = 20;
+    resolve(number2);
+  }, 3000);
+});
+
+Promise.all([promise1, promise2])
+  .then((values) => {
+    const sum = values.reduce((acc, curr) => acc + curr, 0);
+    console.log("Sum of resolved values:", sum);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
