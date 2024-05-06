@@ -1,7 +1,17 @@
 const router = require('express').Router();
 const employeeData = require('../Modules/EmpData');
 
-router.get('/get',(req,res)=>{
+const validate = (req, res, next) => {
+    const apiKey = req.headers['x-api-key'];
+    if (!apiKey || apiKey !== 'secret-key') {
+        return res.status(401).send('Unauthorized - Missing or invalid API key');
+    }
+    next();
+}
+
+router.use(validate);
+
+router.get('/get', validate, (req,res)=>{
     res.send(employeeData);
 })
 router.post('/add', (req, res) => {
