@@ -1,26 +1,18 @@
 const router = require('express').Router();
 const employeeData = require('../Modules/EmpData');
+const logger = require('../Modules/LoggerMiddleware');
 
-const validate = (req, res, next) => {
-    const apiKey = req.headers['x-api-key'];
-    if (!apiKey || apiKey !== 'secret-key') {
-        return res.status(401).send('Unauthorized - Missing or invalid API key');
-    }
-    next();
-}
 
-router.use(validate);
-
-router.get('/get', validate, (req,res)=>{
+router.get('/get', logger, (req,res)=>{
     res.send(employeeData);
 })
-router.post('/add', (req, res) => {
+router.post('/add', logger, (req, res) => {
     console.log('data body: ',req.body)
     const newEmployee = req.body;
     employeeData.push(newEmployee);
     res.status(201).json(newEmployee);
 });
-router.delete('/remove/:id', (req, res) => {
+router.delete('/remove/:id', logger, (req, res) => {
     const id = parseInt(req.params.id);
     const index = employeeData.findIndex(employee => employee.id === id);
 
